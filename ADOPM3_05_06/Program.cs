@@ -12,7 +12,7 @@ namespace ADOPM3_05_06
             int[] numbers = { 1, 2 };
 
             int factor = 10;
-            IEnumerable<int> query = numbers.Select(n => n * factor); // Update query
+            var query = numbers.Select(n => n * factor); // Update query
 
             // Remember: captured variables by LE are evaluated at execution time
             factor = 20; 
@@ -24,7 +24,7 @@ namespace ADOPM3_05_06
             
             //"Now, let's remove !_? by updating our query
             string removeChar = "!_?A";
-            for (int i = 0; i <= removeChar.Length; i++)
+            for (int i = 0; i < removeChar.Length; i++)
             {
                 int n = i;
                 sentence = sentence.Where(c => c != removeChar[n]);   // Update query

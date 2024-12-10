@@ -33,11 +33,12 @@ namespace ADOPM3_05_02
 
             //Fist lets call Linq method directly
             IEnumerable<Rectangle> pinkList = System.Linq.Enumerable.Where(originalList, r => r.Color == RectColor.pink);
-            pinkList.ToList().ForEach(r => Console.WriteLine(r.Color)); // pink, pink
+            IEnumerable<Rectangle> orderedList = System.Linq.Enumerable.OrderBy(pinkList, r => r.Area);
+            pinkList.ToList().ForEach(r => Console.WriteLine(r.Area)); // pink, pink
 
             //Do the same using extension method an Linq fluent syntax
-            IEnumerable<Rectangle> whiteList = originalList.Where(r => r.Color == RectColor.white);
-            whiteList.ToList().ForEach(r => Console.WriteLine(r.Color)); // white
+            IEnumerable<Rectangle> whiteList = originalList.Where(r => r.Color == RectColor.white).OrderBy(r => r.Area);
+            whiteList.ToList().ForEach(r => Console.WriteLine(r.Area)); // white
 
             //Yet do the same using Linq Query syntax
             IEnumerable<Rectangle> redList = from r in originalList where r.Color == RectColor.red select r;

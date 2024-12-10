@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace ADOPM3_05_01
 {
@@ -43,12 +44,17 @@ namespace ADOPM3_05_01
     {
 		static void Main(string[] args)
         {
-			Console.WriteLine("Perth".IsCapitalized()); // Using the Method as an extension
 			Console.WriteLine(StringExtension.IsCapitalized("Perth"));  // Using it in a classic way
+
+			Console.WriteLine("Perth".IsCapitalized()); // Using the Method as an extension
 
             Console.WriteLine("martin".Capitalize());
 			
 			Console.WriteLine("Seatle".First());   // S
+
+			int[] list = { 1, 2, 3,};
+			System.Console.WriteLine(list.First());
+			
 
 
 			//chain Extension Methods

@@ -50,7 +50,7 @@ namespace ADOPM3_05_04
 
             Console.WriteLine();
             // Lets Skip the first of the two taken elements
-            list.Reverse().Take(2).Skip(1)
+            list.Reverse().Skip(2).(1)
                 .ToList().ForEach(r => Console.WriteLine(r.Area)); // 10000
 
             Console.WriteLine();
