@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace ADOPM3_05_11
@@ -20,6 +21,23 @@ namespace ADOPM3_05_11
             public override int GetHashCode() => (Width, Height, Color).GetHashCode();  //Needed to implement as part of IEquatable
             public override bool Equals(object obj) => Equals(obj as Rectangle); //Needed to implement as part of IEquatable
             public override string ToString() => $"Color: {Color}  Height: {Height}  Width: {Width}  Area: {Area}";
+
+            public Rectangle()
+            {
+                
+            }
+            public Rectangle(Rectangle org)
+            {
+                Color = org.Color;
+                Height = org.Height;
+                Width = org.Width;
+            }
+        }
+
+        public class Message{
+            public RectColor Color { get; set; }
+            public int Area { get; set; }
+            public string Msg { get; set; }
         }
         static void Main(string[] args)
         {
@@ -34,6 +52,8 @@ namespace ADOPM3_05_11
                 new Rectangle() { Color = RectColor.green, Height = 30, Width = 15 },
                 new Rectangle() { Color = RectColor.orange, Height = 45, Width =15 },
                 new Rectangle() { Color = RectColor.red, Height = 10, Width = 20 }};
+            
+
 
             //First and Last
             Console.WriteLine(originalList.First()); // yellow
@@ -54,6 +74,11 @@ namespace ADOPM3_05_11
             Console.WriteLine(originalList.Any(r => r.Area < 100)); // False
 
             // Range
+            foreach(var item in Enumerable.Range(1, 10))
+            {
+                System.Console.WriteLine(item);
+            }
+
             // Generate a sequence of integers from 1 to 10
             // and then select their squares.
             IEnumerable<int> squares = Enumerable.Range(1, 10).Select(x => x * x);
@@ -62,6 +87,18 @@ namespace ADOPM3_05_11
             {
                 Console.WriteLine(num); //1, 4, 9, ...81, 100
             }
+
+            System.Console.WriteLine("\nPlay with Select");
+            var colorlist = originalList.Select(r => r.Color).Distinct();
+            colorlist.ToList().ForEach(color => System.Console.WriteLine(color));
+            
+            System.Console.WriteLine("\nDeep Copy");
+            var deepCopy = originalList.Select(r => new Rectangle(r)); 
+
+            System.Console.WriteLine("\nCompletely new list");
+            var msgList = originalList.Select(r => new Message(){Color  = r.Color, Area = r.Area, Msg = $"Beware of {r.Color}!"}); 
+            msgList.ToList().ForEach(msg => System.Console.WriteLine(msg.Msg));
+
         }
     }
     //Excercise
